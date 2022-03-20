@@ -28,6 +28,10 @@ public class BinaryLoader implements Loader {
 
             int recordsCount = dataInput.readInt();
 
+            if (recordsCount < 0) {
+                throw new LoadException("records count cannot be negative");
+            }
+
             List<Car> cars = new ArrayList<>();
 
             int i = 0;
@@ -73,6 +77,10 @@ public class BinaryLoader implements Loader {
 
             int brandNameLength = dataInput.readShort();
 
+            if (brandNameLength < 0) {
+                throw new LoadException("brand name length cannot be negative");
+            }
+
             String brandName = dataInput.readUTF();
 
             int price = dataInput.readInt();
@@ -91,20 +99,20 @@ public class BinaryLoader implements Loader {
      */
     private void checkDate(int day, int month, int year) {
         if (year < 0) {
-            throw new LoadException("date format");
+            throw new LoadException("year cannot be negative");
         }
 
         if (month > 12 || month < 0) {
-            throw new LoadException("date format");
+            throw new LoadException("month is wrong");
         }
 
         if (year % 4 == 0 && year % 100 != 0 && year % 400 == 0) {
             if (leapYear[month - 1] < day && day < 0) {
-                throw new LoadException("date format");
+                throw new LoadException("day is wrong");
             }
         } else {
             if (nonLeapYear[month - 1] < day && day < 0) {
-                throw new LoadException("date format");
+                throw new LoadException("day is wrong");
             }
         }
     }
