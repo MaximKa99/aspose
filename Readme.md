@@ -13,4 +13,5 @@ This solution is represented by multi project with the following modules:
 
 To launch this you need to run the following command:
 
-``mvn exec:java -Dexec.mainClass="com.home.aspose.App``
+``mvn package``
+``mvn -pl app exec:java -Dexec.mainClass="com.home.aspose.App"``
