@@ -1,0 +1,5 @@
+.idea
+target
+app/target
+aspose-lib/target
+*.iml
